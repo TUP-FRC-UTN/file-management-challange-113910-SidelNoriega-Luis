@@ -1,0 +1,53 @@
+<!-- <p>Archivos</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Dueños</th>
+        </tr>
+    </thead>
+    <tbody>
+            @for(archivo of listaArchivos; track archivo.id){
+                <tr>
+                <th scope="row">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value
+                            id="flexCheckDefault">    
+                    </div>
+                </th>
+                <td>{{archivo.name}}</td>
+                <td>{{archivo.creation | date:"shortDate"}}</td>
+                <td>
+                    @for(owner of archivo.owners; track owner.id){
+                        <img src="{{owner.avatarUrl}}.join(",")" alt="{{owner.name}}" width="50" height="50">
+                    }
+                    {{archivo.owners.join(",")}}</td>
+                </tr>
+            }            
+    </tbody>
+</table> -->
+<table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Fecha de Creación</th>
+        <th>Propietarios</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let archivo of listaArchivos; trackBy: trackById">
+        <td>{{ archivo.id }}</td>
+        <td>{{ archivo.name }}</td>
+        <td>{{ archivo.creation | date: 'shortDate' }}</td>
+        <td>
+          <div *ngFor="let owner of archivo.owners">
+            <img [src]="owner.avatarUrl" [alt]="owner.name" width="50" height="50">
+          </div>
+        </td>
+        
+      </tr>
+    </tbody>
+  </table>
